@@ -144,6 +144,12 @@ class moderate extends React.Component {
 
     }
   }
+
+  myContent = () => {
+    return ;
+  }
+
+
   render() {
     const { selectedRowKeys } = this.state;
     const rowSelection = {
@@ -189,16 +195,20 @@ class moderate extends React.Component {
 
     return (
       <div>
+      { !this.props.loginReducer.user ? <div>
       {this.setData()}
       <div className="tableButton">
       <Button type="primary" style={{ marginLeft: '5px', marginRight: '5px', width: '80px'  }} onClick={this.getNext}>Next</Button>
       <Button type="primary" style={{ marginLeft: '5px', marginRight: '5px', width: '80px' }} onClick={this.getPrev}>Previous</Button>
-      <Button type="primary" style={{ marginLeft: '5px', marginRight: '5px', width: '80px'  }} onClick={this.deactivate}>{this.props.moderateReducer.offset + 1}</Button>
+      <Button type="primary" style={{ marginLeft: '5px', marginRight: '5px', width: '80px'  }} onClick={this.deactivate}>Deactivate</Button>
+
+      <Button type="primary" style={{ marginLeft: '5px', marginRight: '5px', width: '80px'  }} >{this.props.moderateReducer.offset + 1}</Button>
 
       </div>
       <Table rowSelection={rowSelection} columns={columns} dataSource={data} >
 
       </Table>
+      </div> : <div><h1>You are not authorize to access it.</h1></div> }
       </div>
     );
   }
@@ -206,7 +216,8 @@ class moderate extends React.Component {
 
 function mapStateToProps(state){
 	return {
-		moderateReducer:state.moderateReducer
+		moderateReducer:state.moderateReducer,
+    loginReducer:state.loginReducer
 	};
 
 

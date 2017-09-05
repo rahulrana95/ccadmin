@@ -26,6 +26,21 @@ margin-bottom: 10px;
   display: none !important;
 }
 
+#loginForm .contentArea {
+  width:40% !important;
+  margin-left: auto !important;
+  margin-right: auto!important;
+}
+#components-form-demo-normal-login .login-form {
+  max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+  float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+  width: 100%;
+}
+
 .tableButton {
   margin-left: auto !important;
   margin-top: 10px !important;

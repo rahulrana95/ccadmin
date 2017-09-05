@@ -1,11 +1,16 @@
 import React from 'react';
-import { Menu, Icon } from 'antd';
+import { Menu, Icon, Button } from 'antd';
 import { Link } from 'react-router';
+import Login from './login.js';
+import {connect} from 'react-redux';
+import store from '../store/index';
+
+import {bindActionCreators} from 'redux';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
-export default class navBar extends React.Component {
+class navBar extends React.Component {
   state = {
     current: 'mail',
   }
@@ -13,6 +18,17 @@ export default class navBar extends React.Component {
     this.setState({
       current: e.key,
     });
+  }
+  logout = () => {
+    if(this.props.loginReducer.login == 1){
+      console.log('Logout Called');
+      store.dispatch({
+        type:'loginData',
+        payload:[],
+        login:0
+      });
+    }
+
   }
   render() {
     return (
@@ -32,9 +48,14 @@ export default class navBar extends React.Component {
         <Menu.Item key="app" >
           <Link to="/moderate"><Icon type="appstore" />Moderate</Link>
         </Menu.Item>
+
+
       </Menu></div>
       <div className="contentArea">
-      {this.props.children}
+      <div>
+        <Button onClick={this.logout}>{this.props.loginReducer.login ? <p>Logout</p> :  <p>Login Please</p> }</Button>
+      </div>
+      { this.props.loginReducer.login ?  this.props.children : <Login /> }
       </div>
 
 
@@ -42,3 +63,20 @@ export default class navBar extends React.Component {
     );
   }
 }
+
+
+function mapStateToProps(state){
+  return {
+    loginReducer:state.loginReducer
+  };
+
+
+  }
+
+function matchDispatchToProps(dispatch){
+  return bindActionCreators({},dispatch);
+
+
+}
+
+export default connect(mapStateToProps,matchDispatchToProps)(navBar);
