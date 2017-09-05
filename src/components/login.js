@@ -30,7 +30,7 @@ const FormItem = Form.Item;
             type:'loginData',
             payload:[],
             login:1,
-            user:1
+            user: response.data.user
           });
 
         }

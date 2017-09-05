@@ -195,7 +195,7 @@ class moderate extends React.Component {
 
     return (
       <div>
-      { !this.props.loginReducer.user ? <div>
+      { !this.props.loginReducer.user && this.props.loginReducer.login  ? <div>
       {this.setData()}
       <div className="tableButton">
       <Button type="primary" style={{ marginLeft: '5px', marginRight: '5px', width: '80px'  }} onClick={this.getNext}>Next</Button>
