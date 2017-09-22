@@ -7,22 +7,25 @@ import axios from 'axios';
 import store from '../store/index';
 
 const columns = [{
-  title: 'First Name',
+  title: 'NAME',
   dataIndex: 'firstName',
 }, {
-  title: 'Last Name',
-  dataIndex: 'lastName',
-}, {
-  title: 'Details',
-  dataIndex: 'details',
-}, {
-  title: 'Photo',
-  dataIndex: 'photo',
-}, {
-  title: 'Desc',
-  dataIndex: 'description',
+  title: 'Gender',
+  dataIndex: 'gender',
 },{
-  title : 'Show',
+  title: 'ADDRESS',
+  dataIndex: 'address',
+}, {
+  title: 'COMPLAINT',
+  dataIndex: 'description',
+}, {
+  title: 'PHOTO',
+  dataIndex: 'photo',
+},{
+  title: 'LOCATION',
+  dataIndex: 'mapURL',
+},{
+  title : 'PROFILE',
   dataIndex: 'show'
 }];
 
@@ -134,11 +137,12 @@ class moderate extends React.Component {
         const url='user/id='+this.props.moderateReducer.payload[i].id;
         data.push({
           key: this.props.moderateReducer.payload[i].id,
-          firstName: this.props.moderateReducer.payload[i].firstName ,
-          lastName: this.props.moderateReducer.payload[i].lastName,
-          details: this.props.moderateReducer.payload[i].details,
-          photo: <a href={this.props.moderateReducer.payload[i].photo} target="_blank" >Photo</a>,
+          firstName: this.props.moderateReducer.payload[i].firstName + ' ' + this.props.moderateReducer.payload[i].lastName ,
+          gender: this.props.moderateReducer.payload[i].gender,
+          address: this.props.moderateReducer.payload[i].address,
           description: this.props.moderateReducer.payload[i].description,
+          photo: <a href={this.props.moderateReducer.payload[i].photo} target="_blank" >Photo</a>,
+          mapURL:  <a href={this.props.moderateReducer.payload[i].mapURL} target="_blank" >Photo</a>,
           show :   <Link to={url} >Click to Show</Link>
         });
       }

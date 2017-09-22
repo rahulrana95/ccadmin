@@ -101,11 +101,16 @@ class table extends React.Component {
         var ur=data[data.length -1].photo;
         var d=<a href={ur} target="_blank">Pic</a>
         data[data.length -1].photo=d;
+        data[data.length -1].firstName = data[data.length -1].firstName + ' ' + data[data.length -1].lastName;
         let userURL=`user/id=${data[data.length -1].id}`;
         let show = (
           <Link to={userURL}>Click to Show</Link>
         );
+        let url = (
+          <a href={data[data.length-1].mapURL} target="_blank" >Location</a>
+        );
         data[data.length-1].show=show;
+        data[data.length-1].mapURL=url;
 
       }
     }
@@ -143,10 +148,21 @@ class table extends React.Component {
       title: 'NAME',
       dataIndex: 'firstName',
       key: 'firstName',
-    },{
+    },
+    {
+      title: 'GENDER',
+      dataIndex: 'gender',
+      key: 'gender',
+    },
+    {
       title: 'ADDRESS',
       dataIndex: 'address',
       key: 'address',
+    },
+    {
+      title: 'COMPLAINT',
+      dataIndex: 'description',
+      key: 'description',
     },
     {
       title: 'DETAILS',
@@ -159,14 +175,9 @@ class table extends React.Component {
       key: 'photo',
     },
     {
-      title: 'GENDER',
-      dataIndex: 'gender',
-      key: 'gender',
-    },
-    {
-      title: 'COMPLAINT',
-      dataIndex: 'description',
-      key: 'description',
+      title : 'LOCATION',
+      dataIndex : 'mapURL',
+      key : 'mapURL'
     },
     {
       title: 'PROFILE',
