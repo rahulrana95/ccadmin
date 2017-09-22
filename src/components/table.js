@@ -165,11 +165,6 @@ class table extends React.Component {
       key: 'description',
     },
     {
-      title: 'DETAILS',
-      dataIndex: 'details',
-      key: 'details',
-    },
-    {
       title: 'PHOTO',
       dataIndex: 'photo',
       key: 'photo',
