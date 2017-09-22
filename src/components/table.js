@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, Button, Modal } from 'antd';
-
+import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import store from '../store/index';
@@ -10,7 +10,7 @@ let data = [];
 class table extends React.Component {
   constructor(props){
     super(props);
-    fetch('http://ec2-18-220-252-161.us-east-2.compute.amazonaws.com:3000/complaint?offset=0', { method : 'GET' } )
+    fetch('http://ec2-52-15-116-95.us-east-2.compute.amazonaws.com:3000/complaint?offset=0', { method : 'GET' } )
     .then(response => response.json())
     .then(json => {
       store.dispatch({
@@ -55,7 +55,7 @@ class table extends React.Component {
     if(this.props.tableReducer.payload.length == 0){
       return ;
     }
-    fetch(`http://ec2-18-220-252-161.us-east-2.compute.amazonaws.com:3000/complaint?offset=${off}`, { method : 'GET' } )
+    fetch(`http://ec2-52-15-116-95.us-east-2.compute.amazonaws.com:3000/complaint?offset=${off}`, { method : 'GET' } )
     .then(response => response.json())
     .then(json => {
       console.log('getNExt');
@@ -74,7 +74,7 @@ class table extends React.Component {
     if ( off < 0 ){
       off = 0;
     }
-    fetch(`http://ec2-18-220-252-161.us-east-2.compute.amazonaws.com:3000/complaint?offset=${off}`, { method : 'GET' } )
+    fetch(`http://ec2-52-15-116-95.us-east-2.compute.amazonaws.com:3000/complaint?offset=${off}`, { method : 'GET' } )
     .then(response => response.json())
     .then(json => {
       console.log('Previous');
@@ -98,13 +98,12 @@ class table extends React.Component {
 
         data.push(this.props.tableReducer.payload[i]);
         console.log('==========================');
-        console.log(data[data.length -1].city);
         var ur=data[data.length -1].photo;
         var d=<a href={ur} target="_blank">Pic</a>
         data[data.length -1].photo=d;
         let userURL=`user/id=${data[data.length -1].id}`;
         let show = (
-          <a href={userURL} target="_blank">Click to Show</a>
+          <Link to={userURL}>Click to Show</Link>
         );
         data[data.length-1].show=show;
 
@@ -141,37 +140,36 @@ class table extends React.Component {
     sortedInfo = sortedInfo || {};
     filteredInfo = filteredInfo || {};
     const columns = [{
-      title: 'first Name',
+      title: 'NAME',
       dataIndex: 'firstName',
       key: 'firstName',
-      width:'10'
-    }, {
-      title: 'last Name',
-      dataIndex: 'lastName',
-      key: 'lastName',
+    },{
+      title: 'ADDRESS',
+      dataIndex: 'address',
+      key: 'address',
     },
     {
-      title: 'Details',
+      title: 'DETAILS',
       dataIndex: 'details',
       key: 'details',
     },
     {
-      title: 'Photo',
+      title: 'PHOTO',
       dataIndex: 'photo',
       key: 'photo',
     },
     {
-      title: 'M/F',
+      title: 'GENDER',
       dataIndex: 'gender',
       key: 'gender',
     },
     {
-      title: 'Desc',
+      title: 'COMPLAINT',
       dataIndex: 'description',
       key: 'description',
     },
     {
-      title: 'Show',
+      title: 'PROFILE',
       dataIndex: 'show',
       key: 'show',
     }

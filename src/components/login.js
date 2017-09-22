@@ -18,7 +18,7 @@ const FormItem = Form.Item;
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        axios.post('http://ec2-18-220-252-161.us-east-2.compute.amazonaws.com:3000/login', {
+        axios.post('http://ec2-52-15-116-95.us-east-2.compute.amazonaws.com:3000/login', {
         username:values.userName,
         password:values.password
       })

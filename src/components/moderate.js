@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, Button, message } from 'antd';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import {bindActionCreators} from 'redux';
 import axios from 'axios';
 import store from '../store/index';
@@ -31,7 +32,7 @@ let data = [];
 class moderate extends React.Component {
   constructor(props){
     super(props);
-    fetch(`http://ec2-18-220-252-161.us-east-2.compute.amazonaws.com:3000/complaint1?offset=0`, { method : 'GET' } )
+    fetch(`http://ec2-52-15-116-95.us-east-2.compute.amazonaws.com:3000/complaint1?offset=0`, { method : 'GET' } )
     .then(response => response.json())
     .then(json => {
       console.log('getNExt');
@@ -60,7 +61,7 @@ class moderate extends React.Component {
       id:this.state.selectedRowKeys
     };
 
-    axios.post('http://ec2-18-220-252-161.us-east-2.compute.amazonaws.com:3000/deactivate', {
+    axios.post('http://ec2-52-15-116-95.us-east-2.compute.amazonaws.com:3000/deactivate', {
     id: this.state.selectedRowKeys
   })
   .then(function (response) {
@@ -92,7 +93,7 @@ class moderate extends React.Component {
     if (this.props.moderateReducer.payload.length == 0 ){
       return ;
     }
-    fetch(`http://ec2-18-220-252-161.us-east-2.compute.amazonaws.com:3000/complaint1?offset=${off}`, { method : 'GET' } )
+    fetch(`http://ec2-52-15-116-95.us-east-2.compute.amazonaws.com:3000/complaint1?offset=${off}`, { method : 'GET' } )
     .then(response => response.json())
     .then(json => {
       console.log('getNExt');
@@ -111,7 +112,7 @@ class moderate extends React.Component {
     if ( off < 0 ){
       off = 0;
     }
-    fetch(`http://ec2-18-220-252-161.us-east-2.compute.amazonaws.com:3000/complaint1?offset=${off}`, { method : 'GET' } )
+    fetch(`http://ec2-52-15-116-95.us-east-2.compute.amazonaws.com:3000/complaint1?offset=${off}`, { method : 'GET' } )
     .then(response => response.json())
     .then(json => {
       console.log('Previous');
@@ -138,7 +139,7 @@ class moderate extends React.Component {
           details: this.props.moderateReducer.payload[i].details,
           photo: <a href={this.props.moderateReducer.payload[i].photo} target="_blank" >Photo</a>,
           description: this.props.moderateReducer.payload[i].description,
-          show :   <a href={url} target="_blank">Click to Show</a>
+          show :   <Link to={url} >Click to Show</Link>
         });
       }
 
