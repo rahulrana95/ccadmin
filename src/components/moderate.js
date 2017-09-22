@@ -142,7 +142,7 @@ class moderate extends React.Component {
           address: this.props.moderateReducer.payload[i].address,
           description: this.props.moderateReducer.payload[i].description,
           photo: <a href={this.props.moderateReducer.payload[i].photo} target="_blank" >Photo</a>,
-          mapURL:  <a href={this.props.moderateReducer.payload[i].mapURL} target="_blank" >Photo</a>,
+          mapURL:  <a href={this.props.moderateReducer.payload[i].mapURL} target="_blank" >Location</a>,
           show :   <Link to={url} >Click to Show</Link>
         });
       }
